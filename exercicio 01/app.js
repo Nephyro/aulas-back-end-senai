@@ -1,4 +1,4 @@
-//Import da bivlioteca
+//Import da biblioteca
 var readline = require(`readline`)
 
 //Criação do objeto para manipular a entrada de dados

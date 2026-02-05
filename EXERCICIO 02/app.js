@@ -17,17 +17,17 @@ entradaDeDados.question('Por favor digite o seu nome: ', function(nome){
 
             entradaDeDados.question('Digite a taxa de juros que deverá ser aplicada: ', function(taxa){
                 let taxaAplicada = taxa
-                
-            })
+                let taxaConvertida = Number(taxaAplicada) / 100
 
-            console.log(`\n******************* [Nome da Empresa] *******************
-                \nMuito obrigado por realizar a sua compra conosco Sr(a) ${nomeCliente}.
-                \nA compra do produto ${nomeProduto}, tem um valor de: ${valorProduto}.
-                \nA sua compra será parcelada em xx vezes e o Sr(a) pagará: xxxxxx.
-                \nO acréscimo realizado ao valor de: ${valorProduto} será de xxxxxxxxxx.
-                \n
-                \nMuito obrigado por escolher a [Nome da Empresa].
-                \n*******************************************************`)
+                console.log(`\n******************* Essencial Alpha *******************
+                    \nMuito obrigado por realizar a sua compra conosco Sr(a) ${nomeCliente}.
+                    \nA compra do produto ${nomeProduto}, tem um valor de: ${valorProduto}.
+                    \nA sua compra será parcelada em xx vezes e o Sr(a) pagará: xxxxxx.
+                    \nO acréscimo realizado ao valor de: ${valorProduto} será de xxxxxxxxxx.
+                    \n
+                    \nMuito obrigado por escolher a Essencial Alpha.
+                    \n*******************************************************`)
+            })
         })
     })
 })

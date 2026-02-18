@@ -3,7 +3,7 @@
  * Cálculos SA
  * Autor: Anderson
  * Data: 13/02/2026
- * Versão: 1.0
+ * Versão: 1.1
  * ******************************************************/
 
 // Importando biblioteca do readline
@@ -14,21 +14,27 @@ const entradaDeDados = readline.createInterface({
     output: process.stdout
 })
 
-entradaDeDados.question('Insira o primeiro número:', function(numero1){
-    let n1 = numero1
+entradaDeDados.question('Qual operação deseja realizar? 1- SOMAR; 2- SUBTRAIR; 3- MULTIPLICAR; 4- DIVIDIR: ', function(escolha){
+    let escolhaOperacao = escolha
 
-    entradaDeDados.question('Insira o segundo número:', function(numero2){
-        let n2 = numero2
+    let tratativa = require('./modulo/tratativa.js')
 
-        entradaDeDados.question('Qual operação realizar? 1- SOMAR; 2- SUBTRAIR; 3- MULTIPLICAR; 4- DIVIDIR:', function(escolha){
-            let escolhaDigitada = escolha.toLocaleLowerCase()
+    tratativa.tratativaString(escolhaOperacao)
 
-            let sistema = require('./modulo/sistema.js')
+    entradaDeDados.question('Insira o primeiro número: ', function(numero1){
+        let n1 = numero1
 
-            let resultado = sistema.valoresDigitados(n1, n2, escolhaDigitada)
-            let teste = sistema.operacaoSolicitada( n1, n2)
+        entradaDeDados.question('Insira o segundo número: ', function(numero2){
+            let n2 = numero2
 
-            console.log('Operação realizada: ' + teste)
+            let calculos = require('./modulo/sistema.js')
+
+
+            calculos.calcularSoma(n1, n2, escolhaOperacao)
+            calculos.calcularSubtracao(n1, n2, escolhaOperacao)
+            calculos.calcularMultiplicacao(n1, n2, escolhaOperacao)
+            calculos.calcularDivisao(n1, n2, escolhaOperacao)
+        
         })
     })
 })

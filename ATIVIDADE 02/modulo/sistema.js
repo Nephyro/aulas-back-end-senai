@@ -1,38 +1,51 @@
-function valoresDigitados(n1, n2){
-
-    let v1 = Number(n1)
-    let v2 = Number(n2)
-
-    if(n1 =='' || isNaN(n1) || n2 =='' || isNaN(n2)){
-        return false
-    }else{
+function calcularSoma(numero1, numero2, escolhaOperacao){
+      
+    if(escolhaOperacao?.toLowerCase() === 'somar'){
+        console.log(`O resultado da soma é: ${Number(String(numero1).replace(',', '.')) + Number(String(numero2).replace(',', '.'))}`)
         return true
+    }else{
+        return false
     }
+     
 }
 
-function operacaoSolicitada(operacao, n1, n2){
-
-    let t1 = n1
-    let t2 = n2
-    let resultado
-    let op = Number(operacao)
+function calcularSubtracao(numero1, numero2, escolhaOperacao){
 
 
-    if(op =='' || isNaN(op) || op <= 0 || op > 4){
-        return false
-    }else if(op == 1){
-        resultado = t1 + t2
-    }else if(op == 2){
-        resultado = t1 - t2
-    }else if(op == 3){
-        resultado = t1 * t2
+    if(escolhaOperacao?.toLowerCase() === 'subtrair'){
+            console.log(`O resultado da subtração é: ${Number(String(numero1).replace(',', '.')) - Number(String(numero2).replace(',', '.'))}`)
+            return true
+        }else{
+            return false
+        }
+
+}
+
+function calcularMultiplicacao(numero1, numero2, escolhaOperacao){
+
+    if(escolhaOperacao?.toLowerCase() === 'multiplicar'){
+        console.log(`O resultado da multiplicação é: ${Number(String(numero1).replace(',', '.')) * Number(String(numero2).replace(',', '.'))}`)
+        return true
     }else{
-        resultado = t1 / t2
+        return false
+    }
+
+}
+
+function calcularDivisao(numero1, numero2,escolhaOperacao){
+
+    if(escolhaOperacao?.toLowerCase() === 'dividir'){
+        console.log(`O resultado da divisão é: ${Number(String(numero1).replace(',', '.')) / Number(String(numero2).replace(',', '.'))}`)
+        return true
+    }else{
+        return false
     }
 
 }
 
 module.exports = {
-    valoresDigitados,
-    operacaoSolicitada
+    calcularSoma,
+    calcularSubtracao,
+    calcularMultiplicacao,
+    calcularDivisao
 }

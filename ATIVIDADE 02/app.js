@@ -17,9 +17,6 @@ const entradaDeDados = readline.createInterface({
 entradaDeDados.question('Qual operação deseja realizar? 1- SOMAR; 2- SUBTRAIR; 3- MULTIPLICAR; 4- DIVIDIR: ', function(escolha){
     let escolhaOperacao = escolha
 
-    let tratativa = require('./modulo/tratativa.js')
-
-    tratativa.tratativaString(escolhaOperacao)
 
     entradaDeDados.question('Insira o primeiro número: ', function(numero1){
         let n1 = numero1
@@ -30,6 +27,7 @@ entradaDeDados.question('Qual operação deseja realizar? 1- SOMAR; 2- SUBTRAIR;
             let calculos = require('./modulo/sistema.js')
 
 
+            // calculos.executarOperacao(n1, n2, escolhaOperacao)
             calculos.calcularSoma(n1, n2, escolhaOperacao)
             calculos.calcularSubtracao(n1, n2, escolhaOperacao)
             calculos.calcularMultiplicacao(n1, n2, escolhaOperacao)

@@ -1,7 +1,7 @@
 /********************************************************
  * Objetivo: Desenvolver uma aplicação para a empressa
  * Cálculos SA
- * Autor: Anderson
+ * Autor: Anderson Ribeiro
  * Data: 13/02/2026
  * Versão: 1.1
  * ******************************************************/
@@ -27,7 +27,28 @@ entradaDeDados.question('Qual operação deseja realizar? 1- SOMAR; 2- SUBTRAIR;
             let calculos = require('./modulo/sistema.js')
 
 
-            // calculos.executarOperacao(n1, n2, escolhaOperacao)
+            if(calculos.verificacao(numero1, numero2, escolhaOperacao) !== false){
+                console.log('ERRO! Operação não identificada')
+            }
+
+            if(calculos.calcularSoma(numero1, numero2, escolhaOperacao) !== false){
+                console.log(`O resultado da soma é: ${Number(n1) + Number(n2)}`)
+            }
+
+            if(calculos.calcularSubtracao(numero1, numero2, escolhaOperacao) !== false){
+                console.log(`O resultado da subtração é: ${Number(n1) - Number(n2)}`)
+            }
+
+            if(calculos.calcularMultiplicacao(numero1, numero2, escolhaOperacao) !== false){
+                console.log(`O resultado da multiplicação é: ${Number(n1) * Number(n2)}`)
+            }
+
+            if(calculos.calcularDivisao(numero1, numero2, escolhaOperacao) !== false){
+                console.log(`O resultado da divisão é: ${Number(n1) / Number(n2)}`)
+            }
+
+
+            calculos.verificacao(n1, n2, escolhaOperacao)
             calculos.calcularSoma(n1, n2, escolhaOperacao)
             calculos.calcularSubtracao(n1, n2, escolhaOperacao)
             calculos.calcularMultiplicacao(n1, n2, escolhaOperacao)

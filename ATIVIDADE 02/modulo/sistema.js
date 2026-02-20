@@ -1,37 +1,36 @@
+/************************************************************
+ * Objetivo: Arquivo responsável pelos cálculos e tratativas
+ * da aplicação
+ * Autor: Anderson Ribeiro
+ * Data: 13/02/2026
+ * Versão: 1.1
+ * **********************************************************/
 
+function verificacao(numero1, numero2, escolhaOperacao){
 
+    let n1 = Number(String(numero1).replace(',', '.'))
+    let n2 = Number(String(numero2).replace(',', '.'))
 
-// function executarOperacao(numero1, numero2, escolhaOperacao){
+    const validacaoOperacoes = ['somar', 'subtrair', 'multiplicar', 'dividir']
 
-//     const nomesValidos = ['somar', 'subtrair', 'multiplicar', 'dividir']
-//     let operacao = escolhaOperacao?.toLowerCase()
+    if(typeof escolhaOperacao !== 'string' || !validacaoOperacoes.includes(escolhaOperacao.toLowerCase()) || isNaN(n1) || isNaN(n2)){
+        return 'ERRO! Operação inválida'
+    }
+        return false
 
-//     if(!nomesValidos.includes(operacao)){
-//         return 'ERRO! Operação inválida'
-//     }
-
-//     let n1 = Number(String(numero1).replace(',', '.'))
-//     let n2 = Number(String(numero2).replace(',', '.'))
-
-//     if(isNaN(n1) || isNaN(n2)){
-//         return 'Erro! Digite apenas números válidos'
-//     }
-
-// }
-
-
+}
 
 function calcularSoma(numero1, numero2, escolhaOperacao){
 
     let n1 = Number(String(numero1).replace(',', '.'))
     let n2 = Number(String(numero2).replace(',', '.'))
-      
+            
     if(escolhaOperacao?.toLowerCase() === 'somar'){
-        console.log(`O resultado da soma é: ${n1 + n2}`)
-        return true
+        return n1 + n2
     }else{
         return false
     }
+
      
 }
 
@@ -41,12 +40,11 @@ function calcularSubtracao(numero1, numero2, escolhaOperacao){
     let n2 = Number(String(numero2).replace(',', '.'))
 
 
-    if(escolhaOperacao?.toLowerCase() === 'subtrair'){
-            console.log(`O resultado da subtração é: ${n1 - n2}`)
-            return true
-        }else{
-            return false
-        }
+    if(escolhaOperacao?.toLowerCase() === 'subtrair'){        
+            return n1 - n2
+    }else{
+        return false
+    }
 
 }
 
@@ -56,12 +54,10 @@ function calcularMultiplicacao(numero1, numero2, escolhaOperacao){
     let n2 = Number(String(numero2).replace(',', '.'))
 
     if(escolhaOperacao?.toLowerCase() === 'multiplicar'){
-        console.log(`O resultado da multiplicação é: ${n1 * n2}`)
-        return true
+            return n1 * n2
     }else{
         return false
     }
-
 }
 
 function calcularDivisao(numero1, numero2,escolhaOperacao){
@@ -79,13 +75,15 @@ function calcularDivisao(numero1, numero2,escolhaOperacao){
 
             console.log(`O resultado da divisão é: ${n1 / n2}`)
             return true
+    }else{
+        return false
     }
 
 
 }
 
 module.exports = {
-    // executarOperacao,
+    verificacao,
     calcularSoma,
     calcularSubtracao,
     calcularMultiplicacao,

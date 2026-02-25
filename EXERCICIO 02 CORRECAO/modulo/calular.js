@@ -8,7 +8,18 @@
 // toLoweCase() -> Retorna a sring em minusculo
 // toUpperCase() -> Retorna a string e MAIUSCULO
 
-// modlo de função anônima - a função não tem um name,
+const validarDados = function(valor1, valor2, operador){
+    if(valor1 =='' || isNaN(valor1) || valor2 =='' || isNaN(valor2)){
+        return false
+    }else{
+        return true
+    }
+}
+
+
+
+
+// modelo de função anônima - a função não tem um name,
 // na verdade o nome será a const onde ela será armazenada
 
 // calcular as 4 operações matemáticas
@@ -41,16 +52,16 @@ const calcular = function(numero1, numero2, operador){
 
     switch (operadorMatematico) {
         case 'SOMAR': //if
-            resultado = valor1 + valor2
+            resultado = somar(valor1, valor2)
             break;
         case 'SUBTRAIR': //else if
-            resultado = valor1 - valor2
+            resultado = subtrair(valor1, valor2)
             break;
         case 'MULTIPLICAR': //else if
-            resultado = valor1 * valor2
+            resultado = multiplicar(valor1, valor2)
             break;
         case 'DIVIDIR': //else if
-            resultado = valor1 / valor2
+            resultado = dividir(valor1, valor2)
             break;
         default: //else
         return false
@@ -61,4 +72,21 @@ const calcular = function(numero1, numero2, operador){
     
 }
 
-console.log(calcular(10, 20, 'multiplicar'))
+// Exemplo de funções baseada em SETA (Arrow function)
+// Funções para ralizar as operações matemáicas
+const somar         = (numero1, numero2) => Number(numero1) + Number(numero2)
+const subtrair      = (numero1, numero2) => Number(numero1) - Number(numero2)
+const multiplicar   = (numero1, numero2) => Number(numero1) * Number(numero2)
+const dividir       = (numero1, numero2) => Number(numero1) / Number(numero2)
+
+// por se tratar de uma única linha de função, a própria seta faz o paple de return
+// então não precisa escrever return
+
+module.exports = {
+    calcular,
+    somar,
+    subtrair,
+    multiplicar,
+    dividir,
+    validarDados
+}

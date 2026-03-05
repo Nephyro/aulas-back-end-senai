@@ -7,7 +7,7 @@
 
 // toLoweCase() -> Retorna a sring em minusculo
 // toUpperCase() -> Retorna a string e MAIUSCULO
-
+    
 const validarDados = function(valor1, valor2, operador){
     if(valor1 =='' || isNaN(valor1) || valor2 =='' || isNaN(valor2)){
         return false

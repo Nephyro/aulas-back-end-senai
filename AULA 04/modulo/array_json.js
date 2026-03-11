@@ -32,7 +32,18 @@
 */
 
 // Formas de criar um ARRAY
-const listaDeNomes      = ['José', 'Maria', 'João', 'André', 'Alex']
+const listaDeNomes      = [ 'José', 
+                            'Maria', 
+                            'João', 
+                            'André', 
+                            'Alex', 
+                            'Carlos', 
+                            'Ana',
+                            'Bruna', 
+                            'Jake',
+                            'José',
+                            'José da Silva'
+                        ]
 const listaDeClientes   = []
 const listaDeFornecedores = []
 
@@ -102,14 +113,78 @@ const manipularDados = function(){
 
     console.log(listaDeClientes)
 
-    // Permite adicionar novos valores no array, sempre no final da lista
+    // Permite adicionar novos valores no array, sempre no FINAL da lista
     listaDeFornecedores.push('Luiz da Silva')
     listaDeFornecedores.push('Zezinho da Silva')
     listaDeFornecedores.push('Huguinho da Silva')
     listaDeFornecedores.push('Luizinho da Silva', 'André da Silva', 'Carlos da Silva')
+    
+    console.table(listaDeFornecedores)
 
-    console.log(listaDeFornecedores)
+    // Permite adicionar novos elementos no array sempre no INICIO da lista
+    listaDeFornecedores.unshift('A Ana Carolina')
+    console.table(listaDeFornecedores)
+
+    // Permite remover elementos do FINAL da lista
+    listaDeFornecedores.pop()
+    console.table(listaDeFornecedores)
+
+    // Permite remover elementos do INICIO da lista
+    listaDeFornecedores.shift()
+    console.table(listaDeFornecedores)
+
+    // Permite remover um elemento baseado no indice da lista
+                    //  splice(indice, qtde de elementos)
+    listaDeFornecedores.splice(2,2)     // O primeiro número representa o indice e o segundo representa a qtde de indices a ser removidos a partir do indice indicado
+    console.table(listaDeFornecedores)
 }
 
+const removerItem = function(nome){
+    
+    // Retorna o indice de um elemento fazendo a busca pelo valor
+    // Se o indesof não encontrar o conteúdo ele devolve -1
+    let indice = listaDeNomes.indexOf(nome)
+    if(indice != -1){
+        listaDeNomes.splice(indice, 1)
+        return true
+    }else{
+        return false
+    }
+    // for(indice in listaDeNomes){
+    //     if(listaDeNomes[indice] == nome){
+    //         listaDeNomes.splice(indice,1)
+    //     }
+    // }
+}
+
+const verificarItem = function(nome){
+    // Verifica a existencia de um conteúdo dentro de uma lista (true/false)
+    return listaDeNomes.includes(nome)
+}
+
+const quantidadeDeItens = function(nome){
+    let cont = 0
+    listaDeNomes.forEach(function(item){
+        if(String(item).toUpperCase() == String(nome).toUpperCase())
+            cont +=1
+    })
+
+    return cont
+}
+
+
 // exibirDados()
-manipularDados()
+// manipularDados()
+// console.table(listaDeNomes)
+// let resposta = removerItem('Maraia')
+// if(resposta){
+//     console.log('Item removido com sucesso.')
+// }else{
+//     console.log('Não foram encontrados itens para ser removido.')
+// }
+
+// console.table(listaDeNomes)
+
+// console.log(verificarItem('Maria'))
+
+console.log(quantidadeDeItens('josé'))

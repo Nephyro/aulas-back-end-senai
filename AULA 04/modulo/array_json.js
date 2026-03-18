@@ -279,9 +279,49 @@ const cadastroDeProdutos = function(){
     //     console.log('A cor do produto é:' + nomeCor.cor)
     // })
 
-    produtos[0].marca.forEach(function(nomeProduto){
-        console.log('Nome: ' + nomeProduto.marcas)
+    // Percorre o objeto de produto para trazer os dados de cada produto
+    produtos.forEach(function(itemProduto){
+        console.log(`Produto: ${itemProduto.nome}`)
+
+        // Percorre o objeto de marca dentro de cada produto, para trazer as marcas
+        itemProduto.marca.forEach(function(itemMarca){
+            console.log(`   Marca: ${itemMarca}`)
+        })
+
+        // Percorre o objeto de cor dentro de cada produto, para trazer as cores
+        itemProduto.cor.forEach(function(itemCor){
+            console.log(`   Cor: ${itemCor.cor}`)
+        })
     })
+
+
+    // Pesquisando um produto pelo NOME
+    console.log('Pesquisando Produtos pelo Nome')
+    let nome = 'Monitor'
+
+    produtos.forEach(function(itemProduto){
+        if(String(itemProduto.nome).toUpperCase() == String(nome).toUpperCase()){
+            console.log(itemProduto)
+        }
+    })
+
+
+    // Pesquisando um produto pela COR
+    console.log('Pesquisando Produtos pela Cor')
+    let cor = 'Aazul'
+    let status = false
+
+    produtos.forEach(function(itemPorduto){
+        itemPorduto.cor.forEach(function(itemCor){
+            if(String(itemCor.cor).toUpperCase() == String(cor).toUpperCase()){
+                console.log(itemPorduto)
+                status = true
+            }
+        })
+    })
+
+    if(!status)
+        console.log('Item pesquisado não foi encontrado...')
 
 }
 

@@ -18,15 +18,19 @@ const getListaDeEstados = function(){
 
         // chamo a array vazia de antes, informo o que quero adicionar (push),
         estados.push(estado.sigla)              // nesse cado as siglas de estado que está no outro arquivo
+        
     })
 
-    // retorna o array já com as siglas guardadas dentro
-    // e retorna também a quantidade (length) de estados
-    return {
-        uf: estados,
-        quantidade: estados.length
+    if(estados.length > 0){
+        // retorna o array já com as siglas guardadas dentro
+        // e retorna também a quantidade (length) de estados
+        return {
+            uf: estados,
+            quantidade: estados.length
+        }
+    }else{
+        return false
     }
-
 }
 
 // Função que buscará as informações pela sigla (uf)
@@ -48,7 +52,11 @@ const getDadosEstado = function(uf){
         }
     })
 
-    return resultado
+    if(resultado){
+        return resultado
+    }else{
+        return false
+    }
 }
 
 // Função responsável por buscar a capital pela sigla do estado
@@ -67,8 +75,11 @@ const getCapitalEstado = function(uf){
 
     })
 
-    return resultado
-
+    if(resultado){
+        return resultado
+    }else{
+        return false
+    }
 }
 
 // Função responsável por buscar informações pela região
@@ -76,7 +87,7 @@ const getEstadosRegiao = function(regiao){
     let estados = []        // array que guardará as informações
 
     listaDeEstados.estados.forEach(function(infoRegiao){
-        if(infoRegiao.regiao.toLowerCase() === regiao.toLowerCase()){
+        if(infoRegiao.regiao.toLocaleUpperCase() === String(regiao).toUpperCase()){
 
             // Adiciona a sigla e o nome caso seja verdadeiro
             estados.push({
@@ -86,11 +97,15 @@ const getEstadosRegiao = function(regiao){
         }
     })
 
-    // retorna a região separada e os estados dessa região
-    return {
-        regiao: regiao,
-        estados: estados
-    }
+    if(estados.length > 0){
+        // retorna a região separada e os estados dessa região
+        return {
+            regiao: regiao,
+            estados: estados
+        }
+    }else{
+        return false
+    }    
 
 }
 
@@ -119,7 +134,11 @@ const getCapitalPais = function(){
         }
     })
 
-    return capitais
+    if(capitais.length > 0){
+        return capitais
+    }else{
+        return false
+    }
     
 }
 
@@ -140,7 +159,11 @@ const getCidades = function(uf){
         }
     })
 
-    return resultado
+    if(resultado){
+        return resultado
+    }else{
+        return false
+    }
 
 }
 

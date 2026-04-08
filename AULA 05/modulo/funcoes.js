@@ -1,7 +1,8 @@
 /* *******************************************************************************
 * Objetivo: Arquivo responsável por manipular dados do arquivo estados_cidades.js
-* Data: 29/08/2022  
+* Data: 29/03/2026  
 * Autor: Anderson Ribeiro
+* Versão: 1.0
 * ********************************************************************************/
 
 // Importando biblioteca com as informações dos estados

@@ -40,8 +40,14 @@ const estadosCidades = require('./modulo/funcoes.js')
 // Criando EndPoints para a API
 
 // Retorna dados dos estados filtrando pelo uf
-app.get('/v1/senai/dados/estado/:uf', function(request, response){
-    let sigla = request.params.uf
+// app.get('/v1/senai/dados/estado/:uf', function(request, response){
+app.get('/v1/senai/dados/estado/', function(request, response){
+    // Recebe a variavel UF através da URL separado pela /
+    // let sigla = request.params.uf
+    
+    // Recebe a variavel UF via Query Params, que são variaveis encaminhadas
+        // após o simbolo de ?
+    let sigla = request.query.uf
     let estado = estadosCidades.getDadosEstado(sigla)
 
     if(estado){

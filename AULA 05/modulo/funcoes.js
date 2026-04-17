@@ -184,3 +184,15 @@ module.exports = {
 // console.log(getEstadosRegiao('Sul'))
 // console.log(getCapitalPais())
 // console.log(getCidades('AC'))
+
+// function ordemCrescente(array){
+//     return array.sort((a,b) => a - b)
+
+    
+// }
+
+// let numeros = [5, 2, 9, 1, 5, 6]
+
+//     let numerosOrdenados = ordemCrescente(numeros)
+//     console.log(numerosOrdenados) // Saída: [1, 2, 5, 5, 6, 9]
+

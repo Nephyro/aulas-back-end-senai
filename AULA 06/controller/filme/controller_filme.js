@@ -62,7 +62,33 @@ const atualizarFilme = async function() {
 
 // Função para retornar todos os filmes cadastrados
 const listarFilme = async function() {
-    
+    // Criando um clone do objeto JSON para manipular a sua estrutura local sem 
+    // modificar a estruturo original
+    let message = JSON.parse(JSON.stringify(config_message))
+
+    try {
+        // Chama a função do DAO para retornar a lista de todos os filmes
+        let result = await filmeDAO.selectAllFilme()
+
+        // Validação para verificar se o DAO conseguiu processar os dados
+        if(result){
+            // Validação para verificar se existe conteúdo no array
+            if(result.length > 0){
+                message.DEFUAL_MESSAGE.status = message.SUCCESS_RESPONSE.status
+                message.DEFUAL_MESSAGE.status_code = message.SUCCESS_RESPONSE.status_code
+                message.DEFUAL_MESSAGE.response.filme = result
+
+                return message.DEFUAL_MESSAGE //200 (Dados do filme)
+            }else{
+                return message.ERROR_NOT_FOUND //404
+            }
+        }else{
+            return message.ERROR_INTERNAL_SERVER_MODEL //500 (model)
+        }
+
+    } catch (error) {
+            return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)
+    } 
 }
 
 // Função para buscar um filme pelo ID

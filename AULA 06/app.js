@@ -44,6 +44,13 @@ app.post('/v1/senai/locadora/filme', bodyParserJSON, async function(request, res
 
 })
 
+app.get('/v1/senai/locadora/filme', async function(request, response){
+    let result = await controllerFilme.listarFilme()
+
+    response.status(result.status_code)
+    response.json(result)
+})
+
 
 // Serve para inicializar a API para receber requisições
 app.listen(8080, function(){

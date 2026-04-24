@@ -8,7 +8,7 @@
 
 // Padronização de cabeçalho para retorno dos endpoint da API
 const DEFUAL_MESSAGE = {
-    api_description: 'API para gerencia controle de Filmes',
+    api_description: 'API para gerenciar controle de Filmes',
     development: 'Anderson Ribeiro Soares',
     version: '1.0.4.26',
     status: Boolean,
@@ -21,7 +21,7 @@ const ERROR_BAD_REQUEST                 = {status : false, status_code: 400, mes
 const ERROR_INTERNAL_SERVER_MODEL       = {status : false, status_code: 500, message: 'Não foi possível processar a requisição por conta de erro na API [ERRO NA MODELAGEM DE DADOS].'}
 const ERROR_INTERNAL_SERVER_CONTROLLER  = {status : false, status_code: 500, message: 'Não foi possível processar a requisição por conta de erro na API [ERRO NA CONTROLLER].'}
 const ERROR_CONTENT_TYPE                = {status : false, status_code: 415, message: 'Não foi possível processar a requisição pois o formato de dados aceito pela API é somente JSON.'}
-const ERROR_NOT_FOUND                   = {status : false, status_code: 404, message: 'Não foi encontrado nenhum dados para retorno.'}
+const ERROR_NOT_FOUND                   = {status : false, status_code: 404, message: 'Não foi encontrado nenhum dado para retorno.'}
 
 // Mensagens de Susseso da API
 const SUCCESS_CREATED_ITEM =    {status : true, status_code: 201, message: 'Registro inserido com sucesso!'}

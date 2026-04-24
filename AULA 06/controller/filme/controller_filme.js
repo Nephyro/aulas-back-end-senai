@@ -76,6 +76,7 @@ const listarFilme = async function() {
             if(result.length > 0){
                 message.DEFUAL_MESSAGE.status = message.SUCCESS_RESPONSE.status
                 message.DEFUAL_MESSAGE.status_code = message.SUCCESS_RESPONSE.status_code
+                message.DEFUAL_MESSAGE.response.count = result.length
                 message.DEFUAL_MESSAGE.response.filme = result
 
                 return message.DEFUAL_MESSAGE //200 (Dados do filme)
@@ -92,8 +93,36 @@ const listarFilme = async function() {
 }
 
 // Função para buscar um filme pelo ID
-const buscarFilme = async function() {
-    
+const buscarFilme = async function(id) {
+    // Criando um clone do objeto JSON para manipular a sua estrutura local sem 
+    // modificar a estruturo original
+    let message = JSON.parse(JSON.stringify(config_message))
+
+    try {
+        // Validação para garantir que o ID seja válido
+        if(id == '' || id == null || id == undefined || isNaN(id)){
+            message.ERROR_BAD_REQUEST.field = '[ID] INVÁLIDO'
+            return message.ERROR_BAD_REQUEST //400
+        }else{
+            let result = await filmeDAO.selectByIdFilme(id)
+
+            if(result){
+                if(result.length > 0){
+                    message.DEFUAL_MESSAGE.status = message.SUCCESS_RESPONSE.status
+                    message.DEFUAL_MESSAGE.status_code = message.SUCCESS_RESPONSE.status_code
+                    message.DEFUAL_MESSAGE.response.filme = result
+
+                    return message.DEFUAL_MESSAGE //200
+                }else{
+                    return message.ERROR_NOT_FOUND //404
+                } 
+            }else{
+                return message.ERROR_INTERNAL_SERVER_MODEL //500 (model)
+            }
+        }
+    } catch (error) {
+        return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)
+    }
 }
 
 // Função para excluir um filme
@@ -135,8 +164,8 @@ const validarDados = async function(filme) {
 
 module.exports = {
     inserirNovoFilme,
-    atualizarFilme,
     listarFilme,
     buscarFilme,
+    atualizarFilme,
     excluirFilme
 }

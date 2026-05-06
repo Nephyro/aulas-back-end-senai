@@ -23,9 +23,15 @@ const ERROR_INTERNAL_SERVER_CONTROLLER  = {status : false, status_code: 500, mes
 const ERROR_CONTENT_TYPE                = {status : false, status_code: 415, message: 'Não foi possível processar a requisição pois o formato de dados aceito pela API é somente JSON.'}
 const ERROR_NOT_FOUND                   = {status : false, status_code: 404, message: 'Não foi encontrado nenhum dado para retorno.'}
 
-// Mensagens de Susseso da API
+// Mensagens de Sucesso da API
 const SUCCESS_CREATED_ITEM =    {status : true, status_code: 201, message: 'Registro inserido com sucesso!'}
+// Retornos para GET 200
 const SUCCESS_RESPONSE     =    {status : true, status_code: 200}
+// Retorno para PUT 200
+const SUCCESS_UPDATED_ITEM =    {status : true, status_code: 200, message: 'Registro atualizado com sucesso!'}
+
+// Retorno para DELETE (200 ou 204)
+const SUCCESS_DELETED_ITEM =    {status : true, status_code: 200, message: 'Registro excluido com sucesso!'}
 
 module.exports = {
     DEFUAL_MESSAGE,
@@ -35,5 +41,7 @@ module.exports = {
     ERROR_INTERNAL_SERVER_CONTROLLER,
     ERROR_CONTENT_TYPE,
     ERROR_NOT_FOUND,
-    SUCCESS_RESPONSE
+    SUCCESS_RESPONSE,
+    SUCCESS_UPDATED_ITEM,
+    SUCCESS_DELETED_ITEM
 }

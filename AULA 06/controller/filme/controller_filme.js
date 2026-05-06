@@ -56,8 +56,55 @@ const inserirNovoFilme = async function(filme, contentType) {
 }
 
 // Função para atualizar um filme existente
-const atualizarFilme = async function() {
-    
+const atualizarFilme = async function(filme, id, contentType) {
+
+    let message = JSON.parse(JSON.stringify(config_message))
+
+    try {
+        // Validação do content type para receber apenas JSON
+        if(String(contentType).toUpperCase() == 'APPLICATION/JSON'){
+            // Validação para o ID incorreto
+            let resultBuscarID = await buscarFilme(id)
+
+            // Se a função encontrar o filme o atributo status do JSON será verdadeiro
+            // Isso significa que o filme existe na base, caso não retorne true, então
+            // o  retorno da função poderá ser um 400 ou 404 ou até mesmo um 500
+            if(resultBuscarID.status){
+                let validar = await validarDados(filme)
+
+                // Validação de campos obrigatórios para a atualização (Body)
+                if(!validar){
+                    // Adiciono o atributo ID do filme no JSON para ser enviado ao DAO
+                    filme.id = id //Garantir que o ID do filme seja o mesmo do parâmetro da função
+
+                    // Chama a função do DAO para atualizar o filme (dados e o ID)
+                    let result = await filmeDAO.updateFilme(filme)
+
+                    if(result){
+                        message.DEFUAL_MESSAGE.status = message.SUCCESS_UPDATED_ITEM.status
+                        message.DEFUAL_MESSAGE.status_code = message.SUCCESS_UPDATED_ITEM.status_code
+                        message.DEFUAL_MESSAGE.message = message.SUCCESS_UPDATED_ITEM.message
+
+                        return message.DEFUAL_MESSAGE //200 (Atualizado)
+
+                    }else{
+                        return message.ERROR_INTERNAL_SERVER_MODEL //500 (model)
+                    }
+
+                }else{
+                    return validar //400
+                }
+            }else{
+                return resultBuscarID //400 ou 404 ou 500
+            }
+
+        }else{
+            return message.ERROR_CONTENT_TYPE //415
+        }
+
+    } catch (error) {
+        return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)   
+    }
 }
 
 // Função para retornar todos os filmes cadastrados
@@ -88,7 +135,8 @@ const listarFilme = async function() {
         }
 
     } catch (error) {
-            return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)
+        console.log("Erro no controller listarFilme:", error);
+        return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)
     } 
 }
 
@@ -121,13 +169,40 @@ const buscarFilme = async function(id) {
             }
         }
     } catch (error) {
+        console.log("Erro no controller buscarFilme:", error);
+        
         return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)
     }
 }
 
 // Função para excluir um filme
-const excluirFilme = async function() {
-    
+const excluirFilme = async function(id) {
+    let message = JSON.parse(JSON.stringify(config_message))
+
+    try {
+        let resultBuscarID = await buscarFilme(id)
+
+        if(resultBuscarID.status){
+            
+            let result = await filmeDAO.deleteFilme(id)
+
+            if(result){
+                message.DEFUAL_MESSAGE.status = message.SUCCESS_RESPONSE.status
+                message.DEFUAL_MESSAGE.status_code = message.SUCCESS_RESPONSE.status_code
+                message.DEFUAL_MESSAGE.message = message.SUCCESS_DELETED_ITEM.message
+
+                return message.DEFUAL_MESSAGE //200 (Excluído)
+            }else{
+                return message.ERROR_INTERNAL_SERVER_MODEL //500 (model)
+            }
+        }else{
+            return validar //400
+        }
+        
+        
+    } catch (error) {
+        return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 (controller)
+    }
 }
 
 // Função para validar todos os dados de filme 
@@ -161,6 +236,9 @@ const validarDados = async function(filme) {
         return false
     }
 }
+
+
+
 
 module.exports = {
     inserirNovoFilme,

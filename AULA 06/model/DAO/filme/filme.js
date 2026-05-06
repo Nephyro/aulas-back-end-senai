@@ -43,7 +43,7 @@ const insertFilme = async function(filme){
         let result = await knexConex.raw(sql)       // await = esperar o resultado do banco de dados para depois continuar a execução do código
 
         if(result)
-            return true
+            return result[0].insertId   //Retorna o ID gerado no BD
         else
             return false
 

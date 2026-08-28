@@ -3,6 +3,20 @@
  * Data: 17/04/2026
  * Autor: Anderson Ribeiro
  * Versão: 1.0
+ *
+ * Instalação do EXPRESS - npm install express --save
+ *       Dependencia responsável pela utilização do protocolo HTTP para
+ *       criar uma API
+ * 
+ * Instalação do CORS    - npm install cors --save
+ *       Dependencia responsável pelas configurações a serem realizadas
+ *       para a permissão de acesso da API
+ *
+ * Instalação do BODY PARSER - npm install bordy-parser --save
+ *       Dependência responsável por realizar a interpretação (parsing)
+ *       dos dados recebidos no corpo (body) das requisições HTTP,
+ *       permitindo manipulá-los em formato JSON.
+ *
  ********************************************************************************/
 
 // Import das depedencias para criar a API

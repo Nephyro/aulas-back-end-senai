@@ -22,7 +22,7 @@ const app = express()
 // Conjunto de permissões a serem aplicadas no CORS da API
 const corsOptions = {
     origin: ['*'], //A origem da requisição, podendo um IP ou *(Todos)
-    methods: 'GET, POST, PUT, DELET, OPTIONS', //São os verbos que serão liberados na API (GET, POST, PUT e DELET)
+    methods: 'GET, POST, PUT, DELETE, OPTIONS', //São os verbos que serão liberados na API (GET, POST, PUT e DELET)
     allowedHeaders: ['Content-type', 'Autorization'] //São permissões de cabeçalho do CORS
 }
 
